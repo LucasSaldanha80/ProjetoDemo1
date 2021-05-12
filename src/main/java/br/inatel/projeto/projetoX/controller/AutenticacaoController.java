@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.inatel.projeto.projetoX.config.seguranca.TokenService;
+import br.inatel.projeto.projetoX.controller.dto.TokenDto;
 import br.inatel.projeto.projetoX.controller.form.LoginForm;
 
 @RestController
@@ -19,7 +20,7 @@ public class AutenticacaoController {
 
 	@Autowired
 	private AuthenticationManager authManager;
-	
+
 	@Autowired
 	private TokenService tokenService;
 
@@ -28,15 +29,14 @@ public class AutenticacaoController {
 		UsernamePasswordAuthenticationToken dadosLogin = form.converter();
 
 		try {
-
-			@SuppressWarnings("unused")
 			Authentication authentication = authManager.authenticate(dadosLogin);
 			String token = tokenService.gerarToken(authentication);
-					
-			return ResponseEntity.ok().build();
+
+			return ResponseEntity.ok(new TokenDto(token, "Bearer"));
 
 		} catch (Exception e) {
-			return ResponseEntity.badRequest().build();		}
+			return ResponseEntity.badRequest().build();
+		}
 
 	}
 }
