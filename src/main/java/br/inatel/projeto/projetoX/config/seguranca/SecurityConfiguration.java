@@ -66,12 +66,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	//configura requisição do front
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		super.configure(web);
+		    web.ignoring()
+		        .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
 	}
 	
 	//printar o hash gerado pelo BCrypt
 	public static void main(String[] args) {
-		System.out.println(new BCryptPasswordEncoder().encode("556677"));
+		System.out.println(new BCryptPasswordEncoder().encode(""));
 	}
 	
 }
