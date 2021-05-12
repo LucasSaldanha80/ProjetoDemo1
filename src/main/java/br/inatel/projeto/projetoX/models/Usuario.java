@@ -11,10 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-@Entity
-public class Usuario {
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-	//private static final long serialVersionUID = 1L;
+@Entity
+public class Usuario implements UserDetails {
+
+	private static final long serialVersionUID = 1L;
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -22,8 +25,9 @@ public class Usuario {
 	private String email;
 	private String senha;
 	
-	/*@ManyToMany(fetch = FetchType.EAGER)
-	private List<Perfil> perfis = new ArrayList<>();*/
+	//carrega a lista de perfis com o EAGER
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Perfil> perfis = new ArrayList<>();
 	
 	@Override
 	public int hashCode() {
@@ -82,7 +86,7 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	/*@Override
+	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return this.perfis;
 	}
@@ -115,5 +119,5 @@ public class Usuario {
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}*/
+	}
 }

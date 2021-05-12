@@ -12,12 +12,14 @@ public class PostagemDto {
 	private String titulo;
 	private String mensagem;
 	private LocalDateTime dataCriacao;
+	private String nomeServico;
 
 	public PostagemDto(Postagem postagem) {
 		this.id = postagem.getId();
 		this.titulo = postagem.getTitulo();
 		this.mensagem = postagem.getMensagem();
 		this.dataCriacao = postagem.getDataCriacao();
+		this.nomeServico = postagem.getServico().getNome();
 	}
 
 	public Long getId() {
@@ -36,6 +38,10 @@ public class PostagemDto {
 		return dataCriacao;
 	}
 	
+	public String getNomeServico() {
+		return nomeServico;
+	}
+
 	public static Page<PostagemDto> converter(Page<Postagem> postagens) {
 		return postagens.map(PostagemDto::new);
 	}
