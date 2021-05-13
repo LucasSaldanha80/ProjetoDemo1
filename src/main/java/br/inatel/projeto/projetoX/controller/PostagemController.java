@@ -36,20 +36,11 @@ import br.inatel.projeto.projetoX.repository.ServicoRepository;
 @RequestMapping("/postagens")
 public class PostagemController {
 
-	
+	@Autowired
 	private PostagemRepository postagemRepository;
 	
 	@Autowired
-	public PostagemController(PostagemRepository postagemRepository) {
-		this.postagemRepository = postagemRepository;
-	}
-
 	private ServicoRepository servicoRepository;
-	
-	@Autowired
-	public PostagemController(ServicoRepository servicoRepository) {
-		this.servicoRepository = servicoRepository;
-	}
 
 	@GetMapping  //configuração de cache        
 	@Cacheable(value = "listaPostagens")                  //configuração de paginação
