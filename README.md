@@ -10,16 +10,23 @@ Experimental social network to share knowledge and content acquired in the train
 Must to have
 
  Comunicar com uma API externa (desenvolvida pelo colaborador ou por terceiros).
+ 
  Persistir dados num BD relacional (não relacional é "nice to have").
+ 
  Apresentar alguns testes unitários e funcionais.
 
 Nice to have
 
  Organização do código.
+ 
  Logging.
+ 
  Segurança (ex: JWT).
+ 
  Cache.
+ 
 📝 Design Patterns
+
 Model
 
 Data holder receives information from Controller, validates or not and returns the appropriate answer.
