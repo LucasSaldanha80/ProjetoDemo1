@@ -1,4 +1,6 @@
 ProjectX
+
+Consiste em uma rede social voltada para prestadores de serviço, onde pode ser utilizada como um portifólio e uma central de busca por profisionais autônomos.
   
 
 Experimental social network to share knowledge and content acquired in the training.
