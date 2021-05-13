@@ -36,11 +36,20 @@ import br.inatel.projeto.projetoX.repository.ServicoRepository;
 @RequestMapping("/postagens")
 public class PostagemController {
 
-	@Autowired
+	
 	private PostagemRepository postagemRepository;
-
+	
 	@Autowired
+	public PostagemController(PostagemRepository postagemRepository) {
+		this.postagemRepository = postagemRepository;
+	}
+
 	private ServicoRepository servicoRepository;
+	
+	@Autowired
+	public PostagemController(ServicoRepository servicoRepository) {
+		this.servicoRepository = servicoRepository;
+	}
 
 	@GetMapping  //configuração de cache        
 	@Cacheable(value = "listaPostagens")                  //configuração de paginação
@@ -84,7 +93,7 @@ public class PostagemController {
 	@PutMapping("/{id}")
 	@Transactional
 	@CacheEvict(value = "listaPostagens", allEntries = true) //invalidando o cache
-	public ResponseEntity<PostagemDto> atualiza(@PathVariable Long id, @RequestBody /* @Valid */ AtualizaPostagemForm form) {
+	public ResponseEntity<PostagemDto> atualiza(@PathVariable Long id, @RequestBody AtualizaPostagemForm form) {
 		
 		Optional<Postagem> postar = postagemRepository.findById(id);
 
